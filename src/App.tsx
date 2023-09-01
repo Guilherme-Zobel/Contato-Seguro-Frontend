@@ -1,11 +1,12 @@
 import { GlobalStyle } from "./styles/global";
+import { FormElements } from "./components/FormElements"
 
 function App() {
   return (
-<>
-  <h1>Hello World!</h1>
-  <GlobalStyle />
-</>
+    <>
+      <FormElements />
+      <GlobalStyle />
+    </>
   )
 }
 
