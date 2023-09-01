@@ -27,13 +27,19 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    width: 100vw;
+    height: 100vh;
     background: url(${backgroundImage});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     -webkit-font-smoothing: antialiased;
+
   }
 
   body, input, textarea, button {
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    font-family: 'Poppins', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
@@ -43,4 +49,4 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
-`
+  `
