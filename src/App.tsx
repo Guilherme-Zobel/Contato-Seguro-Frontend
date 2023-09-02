@@ -1,6 +1,7 @@
+import { useState } from "react";
+import { Provider } from "./context/Context";
 import { GlobalStyle } from "./styles/global";
 import { FormElements } from "./components/FormElements"
-import { useState } from "react";
 import { NewRegistrationModal } from "./components/NewRegistrationModal.tsx"
 
 function App() {
@@ -15,14 +16,14 @@ function App() {
   }
 
   return (
-    <>
+    <Provider>
       <FormElements onOpenNewRegistrationModal={hanleOpenNewRegistrationModal}/>
 
       <NewRegistrationModal
         isOpen={isNewRegistrationModalOpen}
         onRequestClose={hanleCloseNewRegistrationModal}/>
       <GlobalStyle />
-    </>
+    </Provider>
   )
 }
 
