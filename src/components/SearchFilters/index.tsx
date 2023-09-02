@@ -19,6 +19,7 @@ export function SearchFilter() {
       <div>
         <input
           placeholder="Buscar..."
+          autoFocus
           onChange={(e) => handleFilterSearch(e)}
         />
       </div>

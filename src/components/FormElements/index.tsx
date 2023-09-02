@@ -14,8 +14,8 @@ export function FormElements({ onOpenNewRegistrationModal }: FormProps) {
         <button type="button" onClick={onOpenNewRegistrationModal}>
           <span>+</span>
         </button>
-        <SearchFilter/>
       </Content>
+      <SearchFilter/>
     </Container>
   )
 }
