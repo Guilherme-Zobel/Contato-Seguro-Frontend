@@ -2,13 +2,13 @@ import { createContext, ReactNode, useState } from 'react';
 import jsonData from '../data/data.json';
 
 interface IDataValue {
-  id: number;
-  Nome: string;
-  Email: string;
-  Telefone: number;
-  Nascimento: string;
-  Cidade: string;
-  "": null;
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  birthdate: string;
+  city: string;
+  icons: string;
 }
 
 type ContextProps = {

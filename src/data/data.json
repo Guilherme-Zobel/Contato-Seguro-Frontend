@@ -1,31 +1,31 @@
 {
   "rows": [
     {
-      "id": 1,
-      "Nome": "Guilherme",
-      "Email": "guilherme@gmail.com",
-      "Telefone": 51998055556,
-      "Nascimento": "08/02/1993",
-      "Cidade": "Porto Alegre",
-      "": null
+      "id": "1",
+      "name": "Guilherme",
+      "email": "guilherme@gmail.com",
+      "phone": "51998055556",
+      "birthdate": "1993-02-08",
+      "city": "Porto Alegre",
+      "icons": "null"
     },
     {
-      "id": 2,
-      "Nome": "Anderson",
-      "Email": "anderson@gmail.com",
-      "Telefone": 48998055556,
-      "Nascimento": "06/02/1993",
-      "Cidade": "Florianópolis",
-      "": null
+      "id": "2",
+      "name": "Anderson",
+      "email": "anderson@gmail.com",
+      "phone": "48998055556",
+      "birthdate": "1990-06-28",
+      "city": "Florianópolis",
+      "icons": "null"
     },
     {
-      "id": 3,
-      "Nome": "Mara",
-      "Email": "mara@gmail.com",
-      "Telefone": 55998055756,
-      "Nascimento": "07/02/1993",
-      "Cidade": "Gravataí",
-      "": null
+      "id": "3",
+      "name": "Mara",
+      "email": "mara@gmail.com",
+      "phone": "55998055756",
+      "birthdate": "1985-11-12",
+      "city": "Gravataí",
+      "icons": "null"
     }
   ]
 }
