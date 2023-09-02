@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Provider } from "./context/Context";
+import { Provider } from "./Context/Context";
 import { GlobalStyle } from "./styles/global";
 import { FormElements } from "./components/FormElements"
 import { NewRegistrationModal } from "./components/NewRegistrationModal.tsx"

@@ -1,4 +1,5 @@
 import logoImg from '../../assets/logo.png'
+import { SearchFilter } from '../SearchFilters';
 import { Container, Content } from './styles'
 
 interface FormProps {
@@ -13,6 +14,7 @@ export function FormElements({ onOpenNewRegistrationModal }: FormProps) {
         <button type="button" onClick={onOpenNewRegistrationModal}>
           <span>+</span>
         </button>
+        <SearchFilter/>
       </Content>
     </Container>
   )
