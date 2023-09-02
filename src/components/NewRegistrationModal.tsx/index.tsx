@@ -26,12 +26,16 @@ export function NewRegistrationModal({ isOpen, onRequestClose}: NewRegistrationM
             <h2>Inserir</h2>
 
             <input
-              placeholder='Nome'
+              placeholder='Nome*'
+              required
             />
+            <span>Obrigatório</span>
             <input
               type="email"
-              placeholder='E-mail'
+              placeholder='E-mail*'
+              required
             />
+            <span>Obrigatório</span>
              <StyledSideBySideInputs>
             <input
               type="number"

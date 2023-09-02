@@ -48,6 +48,11 @@ export const Cointainer = styled.form`
     border-color: ${darken(0.1, '#d7d7d7')};
     } 
   }
+  span {
+    font-size: 12px;
+    color: var(--gray-700);
+    margin-left: 5px;
+  }
 `;
 
 export const StyledSideBySideInputs = styled.div`
