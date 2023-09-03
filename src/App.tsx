@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserProvider } from "./Context/UserContext";
 import { GlobalStyle } from "./styles/global";
-import { FormElements } from "./components/FormElements"
+import { UserSection } from "./components/Section/user"
 import { UserModal } from "./components/Modal.tsx/UserModal";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <UserProvider>
-      <FormElements
+      <UserSection
         openModal={handleOpenModal}
       />
       <UserModal

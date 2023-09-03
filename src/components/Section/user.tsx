@@ -7,7 +7,7 @@ interface FormProps {
   openModal: () => void;
 }
 
-export function FormElements({ openModal }: FormProps) {
+export function UserSection({ openModal }: FormProps) {
   return (
     <Container>
       <Content>
