@@ -13,7 +13,11 @@ interface Row {
   city: string;
 }
 
-export function UserTable() {
+interface UserTableProps {
+  openModal: () => void;
+}
+
+export function UserTable({ openModal }: UserTableProps) {
 
   const {  userValue, setUserValue, searchValue, columnFilter } = useContext(UserContext);
 
@@ -25,7 +29,6 @@ export function UserTable() {
   const filterRow = userValue.filter((row: Row) =>
   row[columnFilter as keyof Row ].toString().toLowerCase().includes(searchValue.toLowerCase())
 );
-
 
   return (
     <Container>

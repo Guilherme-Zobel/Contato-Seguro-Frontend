@@ -4,20 +4,20 @@ import { UserFilter } from '../Filter/UserFilter';
 import { Container, Content } from './styles'
 
 interface FormProps {
-  onOpenNewRegistrationModal: () => void;
+  openModal: () => void;
 }
 
-export function FormElements({ onOpenNewRegistrationModal }: FormProps) {
+export function FormElements({ openModal }: FormProps) {
   return (
     <Container>
       <Content>
-      <img src={logoImg} alt="incrementar" onClick={onOpenNewRegistrationModal}/>
-        <button type="button" onClick={onOpenNewRegistrationModal}>
+      <img src={logoImg} alt="logo-contato-seguro"/>
+        <button type="button" onClick={() => openModal()}>
           <span>+</span>
         </button>
       </Content>
       <UserFilter/>
-      <UserTable/>
+      <UserTable openModal={openModal}/>
     </Container>
   )
 }

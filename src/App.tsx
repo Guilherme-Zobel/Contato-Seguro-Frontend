@@ -7,23 +7,22 @@ import { UserModal } from "./components/Modal.tsx/UserModal";
 function App() {
   const [isNewRegistrationModalOpen, setIsNewRegistrationModalOpen] = useState(false);
 
-  function hanleOpenNewRegistrationModal() {
+  function handleOpenModal() {
     setIsNewRegistrationModalOpen(true);
   }
 
-  function hanleCloseNewRegistrationModal() {
+  function handleCloseModal() {
     setIsNewRegistrationModalOpen(false);
   }
 
   return (
     <UserProvider>
       <FormElements
-        onOpenNewRegistrationModal={hanleOpenNewRegistrationModal}
-        isOpenModal={hanleOpenNewRegistrationModal}
+        openModal={handleOpenModal}
       />
       <UserModal
         isOpen={isNewRegistrationModalOpen}
-        onRequestClose={hanleCloseNewRegistrationModal}
+        onRequestClose={handleCloseModal}
       />
       <GlobalStyle />
     </UserProvider>
