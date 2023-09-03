@@ -21,6 +21,7 @@ export const Container = styled.div`
       line-height: 1.5rem;
       border-bottom: 1px solid var(--gray-300);
       border-top: 1px solid var(--gray-300);
+      white-space: nowrap; 
     }
 
     td {
@@ -28,6 +29,7 @@ export const Container = styled.div`
       border: 0;
       color: var(--gray-900);
       border-radius: 0.25rem;
+      white-space: nowrap;
       button {
        display: flex;
        align-items: center;
