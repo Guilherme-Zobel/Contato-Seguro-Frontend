@@ -15,12 +15,17 @@ interface Row {
 
 export function RegistrationTable() {
 
-  const {  dataValue, setDataValue  } = useContext(Context);
+  const {  dataValue, setDataValue, searchValue, columnFilter } = useContext(Context);
 
   function handleDelete(id: string) {
     const updatedRowsData = dataValue.filter((row) => row.id !== id);
     setDataValue(updatedRowsData);
   };
+
+  const filterRow = dataValue.filter((row: Row) =>
+  row[columnFilter as keyof Row ].toString().toLowerCase().includes(searchValue.toLowerCase())
+);
+
 
   return (
     <Container>
@@ -36,8 +41,8 @@ export function RegistrationTable() {
           </tr>
         </thead>
         <tbody>
-          {dataValue.length > 0 &&
-            dataValue.map((row) => (
+          {filterRow.length > 0 &&
+            filterRow.map((row) => (
               <tr key={row.id}>
                 <td>{row.name}</td>
                 <td>{row.email}</td>
