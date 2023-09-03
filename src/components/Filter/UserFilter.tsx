@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext } from 'react';
-import { Container } from './styles';
 import { UserContext, IUserValue } from '../../Context/UserContext';
+import { Container } from './styles';
 
 export function UserFilter() {
   
