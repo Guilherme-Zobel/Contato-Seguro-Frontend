@@ -2,17 +2,15 @@ import Modal from 'react-modal'
 import closeImg from '../../assets/close.svg';
 import { Cointainer, StyledSideBySideInputs } from './styles';
 import { useContext } from 'react';
-import { Context } from '../../Context/Context';
+import { UserContext } from '../../Context/UserContext';
 
-interface NewRegistrationModalProps {
+interface UserModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
 }
 
-export function NewRegistrationModal({ isOpen, onRequestClose}: NewRegistrationModalProps) {
+export function UserModal({ isOpen, onRequestClose}: UserModalProps) {
 
-  const { IdRegistration, setIdRegistration, dataValue, setDataValue } = useContext(Context)
-  
   return (
     <Modal
           isOpen={isOpen}

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { useContext } from "react";
 import { Container } from "./styles";
-import { Context } from "../../Context/Context";
+import { UserContext } from "../../Context/UserContext";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { formatPhone } from "../../utils/formatPhone";
 
@@ -15,14 +15,14 @@ interface Row {
 
 export function RegistrationTable() {
 
-  const {  dataValue, setDataValue, searchValue, columnFilter } = useContext(Context);
+  const {  userValue, setUserValue, searchValue, columnFilter } = useContext(UserContext);
 
-  function handleDelete(id: string) {
-    const updatedRowsData = dataValue.filter((row) => row.id !== id);
-    setDataValue(updatedRowsData);
+  function handleDelete(id: number) {
+    const updatedRowsData = userValue.filter((row) => row.id !== id);
+    setUserValue(updatedRowsData);
   };
 
-  const filterRow = dataValue.filter((row: Row) =>
+  const filterRow = userValue.filter((row: Row) =>
   row[columnFilter as keyof Row ].toString().toLowerCase().includes(searchValue.toLowerCase())
 );
 
@@ -51,7 +51,7 @@ export function RegistrationTable() {
                 <td>{row.city}</td>
                 <td>
                   <button>
-                  <FaTrash onClick={() => handleDelete(row.id)}/>
+                    <FaTrash onClick={() => handleDelete(row.id)}/>
                     <FaEdit/>
                   </button>
                 </td>

@@ -1,18 +1,18 @@
 import { ChangeEvent, useContext } from 'react';
 import { Container } from './styles';
-import { Context } from '../../Context/Context';
+import { UserContext, IUserValue } from '../../Context/UserContext';
 
 export function SearchFilter() {
   
-  const { setSearchValue, columnFilter, setColumnFilter } = useContext(Context);
+  const { setSearchValue, columnFilter, setColumnFilter } = useContext(UserContext);
   
   const handleFilterSearch = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(value);
   };
 
   const handleFilterColumn = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
-    setColumnFilter(value);
-  };
+    setColumnFilter(value as keyof IUserValue);
+  }; 
 
   return (
     <Container>

@@ -1,8 +1,18 @@
 {
   "rows": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Guilherme",
+      "companies": [
+        {
+          "id": 1,
+          "name": "Compliance Total"
+        },
+        {
+          "id": 2,
+          "name": "Contato Seguro"
+        }
+      ],
       "email": "guilherme@gmail.com",
       "phone": "51998055556",
       "birthdate": "1993-02-08",
@@ -10,8 +20,14 @@
       "icons": "null"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Anderson",
+      "companies": [
+        {
+          "id": 1,
+          "name": "Contato Seguro"
+        }
+      ],
       "email": "anderson@gmail.com",
       "phone": "48998055556",
       "birthdate": "1990-06-28",
@@ -19,8 +35,14 @@
       "icons": "null"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Mara",
+      "companies": [
+        {
+          "id": 2,
+          "name": "Compliance Total"
+        }
+      ],
       "email": "mara@gmail.com",
       "phone": "55998055756",
       "birthdate": "1985-11-12",

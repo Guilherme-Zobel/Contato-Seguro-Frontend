@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Provider } from "./Context/Context";
+import { UserProvider } from "./Context/UserContext";
 import { GlobalStyle } from "./styles/global";
 import { FormElements } from "./components/FormElements"
-import { NewRegistrationModal } from "./components/NewRegistrationModal.tsx"
+import { UserModal } from "./components/Modal.tsx/UserModal";
 
 function App() {
   const [isNewRegistrationModalOpen, setIsNewRegistrationModalOpen] = useState(false);
@@ -16,17 +16,17 @@ function App() {
   }
 
   return (
-    <Provider>
+    <UserProvider>
       <FormElements
         onOpenNewRegistrationModal={hanleOpenNewRegistrationModal}
         isOpenModal={hanleOpenNewRegistrationModal}
       />
-      <NewRegistrationModal
+      <UserModal
         isOpen={isNewRegistrationModalOpen}
         onRequestClose={hanleCloseNewRegistrationModal}
       />
       <GlobalStyle />
-    </Provider>
+    </UserProvider>
   )
 }
 
