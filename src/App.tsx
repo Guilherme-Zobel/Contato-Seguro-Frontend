@@ -17,11 +17,14 @@ function App() {
 
   return (
     <Provider>
-      <FormElements onOpenNewRegistrationModal={hanleOpenNewRegistrationModal}/>
-
+      <FormElements
+        onOpenNewRegistrationModal={hanleOpenNewRegistrationModal}
+        isOpenModal={hanleOpenNewRegistrationModal}
+      />
       <NewRegistrationModal
         isOpen={isNewRegistrationModalOpen}
-        onRequestClose={hanleCloseNewRegistrationModal}/>
+        onRequestClose={hanleCloseNewRegistrationModal}
+      />
       <GlobalStyle />
     </Provider>
   )
