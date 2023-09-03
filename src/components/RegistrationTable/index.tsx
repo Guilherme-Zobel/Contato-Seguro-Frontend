@@ -15,7 +15,12 @@ interface Row {
 
 export function RegistrationTable() {
 
-  const {  dataValue  } = useContext(Context);
+  const {  dataValue, setDataValue  } = useContext(Context);
+
+  function handleDelete(id: string) {
+    const updatedRowsData = dataValue.filter((row) => row.id !== id);
+    setDataValue(updatedRowsData);
+  };
 
   return (
     <Container>
@@ -41,7 +46,7 @@ export function RegistrationTable() {
                 <td>{row.city}</td>
                 <td>
                   <button>
-                    <FaTrash/>
+                  <FaTrash onClick={() => handleDelete(row.id)}/>
                     <FaEdit/>
                   </button>
                 </td>
