@@ -1,5 +1,5 @@
 import logoImg from '../../assets/logo.png'
-import { RegistrationTable } from '../RegistrationTable';
+import { UserTable } from '../RegistrationTable/UserTable';
 import { UserFilter } from '../Filter/UserFilter';
 import { Container, Content } from './styles'
 
@@ -17,7 +17,7 @@ export function FormElements({ onOpenNewRegistrationModal }: FormProps) {
         </button>
       </Content>
       <UserFilter/>
-      <RegistrationTable/>
+      <UserTable/>
     </Container>
   )
 }

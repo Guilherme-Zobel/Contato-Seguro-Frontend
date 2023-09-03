@@ -13,7 +13,7 @@ interface Row {
   city: string;
 }
 
-export function RegistrationTable() {
+export function UserTable() {
 
   const {  userValue, setUserValue, searchValue, columnFilter } = useContext(UserContext);
 
