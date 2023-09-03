@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const breakpoints = {
+  small: '767px',
+  medium: '992px',
+  large: '1200px',
+};
+
 export const Container = styled.div`
   padding: 20px;
 
@@ -32,5 +38,9 @@ export const Container = styled.div`
        border: none;
       }
     }
+  }
+
+  @media screen and (max-width: ${breakpoints.large}) {
+    overflow-x: auto;
   }
 `;

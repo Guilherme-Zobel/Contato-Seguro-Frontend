@@ -1,10 +1,28 @@
 import styled from "styled-components";
 
+const breakpoints = {
+  small: '767px',
+  medium: '992px',
+  large: '1200px',
+};
+
 export const Container = styled.header`
   background: var(--gray-100);
   max-width: 69.5rem;
   margin: 0 auto; 
   border-radius: 0.25rem;
+
+  @media screen and (max-width: ${breakpoints.large}) {
+  max-width: 64.5rem;
+  }
+
+  @media screen and (max-width: ${breakpoints.medium}) {
+  max-width: 55.5rem;
+  }
+
+  @media screen and (max-width: ${breakpoints.small}) {
+    max-width: 45.5rem;
+  }
 `;
 
 export const Content = styled.div`
