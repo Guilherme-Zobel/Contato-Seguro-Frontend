@@ -1,4 +1,5 @@
 import logoImg from '../../assets/logo.png'
+import { RegistrationTable } from '../RegistrationTable';
 import { SearchFilter } from '../SearchFilters';
 import { Container, Content } from './styles'
 
@@ -16,6 +17,7 @@ export function FormElements({ onOpenNewRegistrationModal }: FormProps) {
         </button>
       </Content>
       <SearchFilter/>
+      <RegistrationTable/>
     </Container>
   )
 }
