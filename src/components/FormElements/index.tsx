@@ -1,9 +1,7 @@
-import { useContext } from 'react';
 import logoImg from '../../assets/logo.png'
 import { RegistrationTable } from '../RegistrationTable';
-import { SearchFilter } from '../SearchFilters';
+import { UserFilter } from '../Filter/UserFilter';
 import { Container, Content } from './styles'
-import { UserContext } from '../../Context/UserContext';
 
 interface FormProps {
   onOpenNewRegistrationModal: () => void;
@@ -18,7 +16,7 @@ export function FormElements({ onOpenNewRegistrationModal }: FormProps) {
           <span>+</span>
         </button>
       </Content>
-      <SearchFilter/>
+      <UserFilter/>
       <RegistrationTable/>
     </Container>
   )

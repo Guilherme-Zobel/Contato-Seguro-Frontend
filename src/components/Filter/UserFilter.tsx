@@ -2,7 +2,7 @@ import { ChangeEvent, useContext } from 'react';
 import { Container } from './styles';
 import { UserContext, IUserValue } from '../../Context/UserContext';
 
-export function SearchFilter() {
+export function UserFilter() {
   
   const { setSearchValue, columnFilter, setColumnFilter } = useContext(UserContext);
   
