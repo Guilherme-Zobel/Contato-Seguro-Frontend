@@ -1,3 +1,5 @@
+import companyData from "../../data/company.json";
+import { ICompanyValue } from '../../Context/CompanyContext'
 import { fireEvent, render, screen } from "@testing-library/react";
 import React, { Dispatch, SetStateAction } from "react";
 import App from "../../App";
@@ -10,6 +12,8 @@ import { UserContext } from "../../Context/UserContext";
 import mockUserContext from "../utils/userContext";
 import { Tabs } from "../../components/Tabs";
 import dictionary from "../../utils/dictionary";
+
+const rowsCompanyData = companyData.rows as ICompanyValue[];
 
 test("Should show the list of users", () => {
   render(<App />);
@@ -35,16 +39,7 @@ test("should insert an user", () => {
   const newUserData: IUserValue = {
     id: 0,
     name: "Nome de Teste",
-    companies: [
-      {
-        id: 1,
-        name: "Contato Seguro",
-      },
-      {
-        id: 2,
-        name: "Compliance Total",
-      },
-    ],
+    companies: [1, 2],
     email: "teste@teste.teste",
     phone: "(61) 98765-4321",
     birthdate: "2010-10-10",
@@ -59,9 +54,14 @@ test("should insert an user", () => {
   fireEvent.change(emailInput, { target: { value: newUserData.email } });
 
   const selectInput = screen.getByText("Selecione suas empresas...");
-  newUserData.companies.map((company) => {
+  newUserData.companies.map((companyId) => {
+    const companyName = rowsCompanyData.find(({ id }) => id === companyId)?.name;
+    if (!companyName) {
+      return;
+    }
+
     fireEvent.click(selectInput);
-    fireEvent.click(screen.getByText(company.name));
+    fireEvent.click(screen.getByText(companyName));
   });
 
   const phoneInput = screen.getByPlaceholderText("(00) 00000-0000");
@@ -106,16 +106,8 @@ test("should update an user", () => {
   const newUserData: IUserValue = {
     id: 0,
     name: "Nome de Teste",
-    companies: [
-      {
-        id: 1,
-        name: "Contato Seguro",
-      },
-      {
-        id: 2,
-        name: "Compliance Total",
-      },
-    ],
+    companies: [1, 2],
+  
     email: "teste@teste.teste",
     phone: "(61) 98765-4321",
     birthdate: "2010-10-10",
@@ -148,10 +140,14 @@ test("should update an user", () => {
   const selectInput = screen
     .getByTestId("select-companies")
     .querySelector("custom-select");
-  newUserData.companies.map((company) => {
+  newUserData.companies.map((companyId) => {
     if (selectInput) {
+      const companyName = rowsCompanyData.find(({ id }) => id === companyId)?.name;
+      if (!companyName) {
+        return;
+      }
       fireEvent.click(selectInput);
-      fireEvent.click(screen.getByText(company.name));
+      fireEvent.click(screen.getByText(companyName));
     }
   });
 

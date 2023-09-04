@@ -9,7 +9,7 @@ interface ICompanies {
 export interface IUserValue {
   id: number;
   name: string;
-  companies: ICompanies[];
+  companies: number[];
   email: string;
   phone: string;
   birthdate: string;

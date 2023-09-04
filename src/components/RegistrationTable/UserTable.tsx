@@ -2,6 +2,7 @@ import moment from "moment";
 import { useContext } from "react";
 import { Container } from "./styles";
 import { IUserValue, UserContext } from "../../Context/UserContext";
+import { CompanyContext } from "../../Context/CompanyContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
 
@@ -17,6 +18,7 @@ export function UserTable({ handleOpenModal }: UserTableProps) {
     setUserValue,
     setIdRegistration,
   } = useContext(UserContext);
+  const { companyValue } = useContext(CompanyContext);
 
   function handleDelete(id: number) {
     const updatedRowsData = userValue.filter((row) => row.id !== id);
@@ -55,7 +57,9 @@ export function UserTable({ handleOpenModal }: UserTableProps) {
               <tr key={row.id}>
                 <td>{row.name}</td>
                 <td style={{ whiteSpace: "pre-line" }}>
-                  {row.companies.map((companie) => companie.name).join(", ")}
+                  {row.companies.map((company) => (
+                    companyValue.find(({ id }) => id === company)?.name || ''
+                  )).join(", ")}
                 </td>
                 <td>{row.email}</td>
                 <td>{formatPhone(row.phone)}</td>

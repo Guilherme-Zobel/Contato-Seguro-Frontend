@@ -89,7 +89,7 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
         <img src={closeImg} alt="Fechar modal" />
       </button>
       <Cointainer>
-        <h2>Inserir</h2>
+       <h2>{idRegistration != 0 ? "Alterar" : "Inserir"}</h2>
 
         <input
           placeholder="Nome*"
@@ -113,19 +113,16 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
           <Select
             isMulti
             options={companyOptions}
-            value={formData.companies.map((company) => ({
-              value: company.id,
-              label: company.name,
+            value={formData.companies.map((companyId) => ({
+              value: companyId,
+              label: companyValue.find(({ id }) => id === companyId)?.name || '',
             }))}
             data-testid="select-companies"
             placeholder="Selecione suas empresas..."
-            onChange={(value) => {
+            onChange={(newValue) => {
               setFormData((prevState) => ({
                 ...prevState,
-                companies: value.map((v) => ({
-                  id: v.value,
-                  name: v.label,
-                })),
+                companies: newValue.map((v) => v.value),
               }));
             }}
             styles={{
