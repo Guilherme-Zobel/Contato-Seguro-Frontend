@@ -6,6 +6,7 @@ import { UserSection } from "./components/Section/user"
 import { UserModal } from "./components/Modal.tsx/UserModal";
 import { Container } from "./components/Section/styles";
 import dictionary from "./utils/dictionary";
+import { CompanyProvider } from "./Context/CompanyContext";
 
 function App() {
   const [isNewRegistrationModalOpen, setIsNewRegistrationModalOpen] = useState(false);
@@ -23,22 +24,24 @@ function App() {
   }
 
   return (
-    <UserProvider>
-      <Container>
-        <Tabs
-          setSelectedSection={setSelectedSection}
-          selectedSection={selectedSection}
+    <CompanyProvider>
+      <UserProvider>
+        <Container>
+          <Tabs
+            setSelectedSection={setSelectedSection}
+            selectedSection={selectedSection}
+            />
+          <UserSection
+            openModal={handleOpenModal}
           />
-        <UserSection
-          openModal={handleOpenModal}
-        />
-        <UserModal
-          isOpen={isNewRegistrationModalOpen}
-          closeModal={handleCloseModal}
-        />
-      </Container>
-      <GlobalStyle />
-    </UserProvider>
+          <UserModal
+            isOpen={isNewRegistrationModalOpen}
+            closeModal={handleCloseModal}
+          />
+        </Container>
+        <GlobalStyle />
+      </UserProvider>
+    </CompanyProvider>
   )
 }
 
