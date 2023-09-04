@@ -7,11 +7,11 @@ import { ICompanyValue, CompanyContext } from "../../Context/CompanyContext";
 import { idGenerator } from "../../utils/idGenerator";
 
 interface CompanyModalProps {
-  isOpen: boolean;
+  isOpenModal: boolean;
   closeModal: () => void;
 }
 
-export function CompanyModal({ isOpen, closeModal }: CompanyModalProps) {
+export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
   const initialValue: ICompanyValue = {
     id: 0,
     name: "",
@@ -26,11 +26,11 @@ export function CompanyModal({ isOpen, closeModal }: CompanyModalProps) {
   const [formData, setFormData] = useState(initialValue);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpenModal) {
       const editValue = companyValue?.find((row) => row.id === idRegistration);
       setFormData(editValue || initialValue);
     }
-  }, [isOpen]);
+  }, [isOpenModal]);
 
   function handleClear() {
     setFormData(initialValue);
@@ -65,7 +65,7 @@ export function CompanyModal({ isOpen, closeModal }: CompanyModalProps) {
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={isOpenModal}
       onRequestClose={closeModal}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"

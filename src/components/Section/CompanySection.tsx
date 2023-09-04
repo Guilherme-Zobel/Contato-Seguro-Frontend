@@ -6,27 +6,27 @@ import { UserContext } from '../../Context/UserContext';
 import { useContext } from 'react';
 
 interface ComapanySectionProps {
-  openModal: () => void;
+  handleOpenModal: () => void;
 }
 
 
-export function CompanySection({ openModal }: ComapanySectionProps) {
+export function CompanySection({ handleOpenModal }: ComapanySectionProps) {
   const {setIdRegistration} = useContext(UserContext)
 
-  function handleOpenModal() {
-    openModal()
+  function showModal() {
+    handleOpenModal()
     setIdRegistration(0)
   }
   return (
     <>
       <Content>
         <img src={logoImg} alt="logo-contato-seguro" />
-        <button type="button" onClick={() => handleOpenModal()}>
+        <button type="button" onClick={() => showModal()}>
           <span>+</span>
         </button>
       </Content>
       <CompanyFilter/>
-      <CompanyTable openModal={openModal}/>
+      <CompanyTable handleOpenModal={handleOpenModal}/>
     </>
   )
 }

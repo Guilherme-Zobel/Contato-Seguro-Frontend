@@ -1,11 +1,12 @@
 import Modal from "react-modal";
 import InputMask from "react-input-mask";
 import closeImg from "../../assets/close.svg";
+import Select from "react-select";
 import { Cointainer, StyledSideBySideInputs } from "./styles";
 import { useContext, useEffect, useState } from "react";
 import { IUserValue, UserContext } from "../../Context/UserContext";
+import { CompanyContext } from "../../Context/CompanyContext";
 import { idGenerator } from "../../utils/idGenerator";
-
 
 interface UserModalProps {
   isOpenModal: boolean;
@@ -25,12 +26,24 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
   };
 
   const { idRegistration, userValue, setUserValue } = useContext(UserContext);
+  const { companyValue } = useContext(CompanyContext);
   const [formData, setFormData] = useState(initialValue);
+  const [companyOptions, setCompanyOptions] = useState<
+    { value: number; label: string }[]
+  >([]);
 
   useEffect(() => {
     if (isOpenModal) {
       const editValue = userValue?.find((row) => row.id === idRegistration);
       setFormData(editValue || initialValue);
+
+      setCompanyOptions([]);
+      companyValue.map((company) =>
+        setCompanyOptions((value) => [
+          ...value,
+          { value: company.id, label: company.name },
+        ])
+      );
     }
   }, [isOpenModal]);
 
@@ -97,6 +110,28 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
           }
           required
         />
+        <div data-testid="select-companies">
+          <Select
+            className="custom-select"
+            isMulti
+            options={companyOptions}
+            value={formData.companies.map((company) => ({
+              value: company.id,
+              label: company.name,
+            }))}
+            data-testid="select-companies"
+            placeholder="Selecione suas empresas..."
+            onChange={(value) => {
+              setFormData((prevState) => ({
+                ...prevState,
+                companies: value.map((v) => ({
+                  id: v.value,
+                  name: v.label,
+                })),
+              }));
+            }}
+          />
+        </div>
         <StyledSideBySideInputs>
           <InputMask
             mask="(99) 99999-9999"

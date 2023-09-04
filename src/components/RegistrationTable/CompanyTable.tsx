@@ -6,10 +6,10 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
 
 interface CompanyTableProps {
-  openModal: () => void;
+  handleOpenModal: () => void;
 }
 
-export function CompanyTable({ openModal }: CompanyTableProps) {
+export function CompanyTable({ handleOpenModal }: CompanyTableProps) {
   const {
     searchValue,
     columnFilter,
@@ -25,7 +25,7 @@ export function CompanyTable({ openModal }: CompanyTableProps) {
 
   function handleEdit(id: number) {
     setIdRegistration(id);
-    openModal();
+    handleOpenModal();
   }
 
   const filterRow = companyValue.filter((row: ICompanyValue) =>

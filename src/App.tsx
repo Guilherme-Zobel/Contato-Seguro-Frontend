@@ -1,26 +1,31 @@
+import Modal from "react-modal";
 import { useState } from "react";
-import { Tabs } from "./components/Tabs";
-import { UserProvider } from "./Context/UserContext";
+import { UserSection } from "./components/Section/UserSection";
 import { GlobalStyle } from "./styles/global";
-import { UserSection } from "./components/Section/UserSection"
 import { UserModal } from "./components/Modal.tsx/UserModal";
+import { UserProvider } from "./Context/UserContext";
 import { Container } from "./components/Section/styles";
-import dictionary from "./utils/dictionary";
+import { Tabs } from "./components/Tabs";
+import { CompanySection } from "./components/Section/CompanySection";
 import { CompanyProvider } from "./Context/CompanyContext";
+import { CompanyModal } from "./components/Modal.tsx/CompanyModal";
+import dictionary from "./utils/dictionary";
 
-function App() {
-  const [isOpenModal, setIsModalOpen] = useState(false);
+if (process.env.NODE_ENV !== "test") Modal.setAppElement("#root");
 
+export function App() {
+  const [isOpenModal, setIsOpenModal] =
+    useState(false);
   const [selectedSection, setSelectedSection] = useState(
     dictionary.userSection
   );
 
   function handleOpenModal() {
-    setIsModalOpen(true);
+    setIsOpenModal(true);
   }
 
   function handleCloseModal() {
-    setIsModalOpen(false);
+    setIsOpenModal(false);
   }
 
   return (
@@ -30,19 +35,29 @@ function App() {
           <Tabs
             setSelectedSection={setSelectedSection}
             selectedSection={selectedSection}
-            />
-          <UserSection
-            handleOpenModal={handleOpenModal}
           />
-          <UserModal
-            isOpenModal={isOpenModal}
-            closeModal={handleCloseModal}
-          />
+          {selectedSection === dictionary.userSection && (
+            <>
+              <UserSection handleOpenModal={handleOpenModal} />
+              <UserModal
+                isOpenModal={isOpenModal}
+                closeModal={handleCloseModal}
+              />
+            </>
+          )}
+          {selectedSection === dictionary.companySection && (
+            <>
+              <CompanySection handleOpenModal={handleOpenModal} />
+              <CompanyModal
+                isOpenModal={isOpenModal}
+                closeModal={handleCloseModal}
+              />
+            </>
+          )}
         </Container>
         <GlobalStyle />
       </UserProvider>
     </CompanyProvider>
-  )
+  );
 }
-
 export default App;
