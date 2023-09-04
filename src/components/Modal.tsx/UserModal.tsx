@@ -112,7 +112,6 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
         />
         <div data-testid="select-companies">
           <Select
-            className="custom-select"
             isMulti
             options={companyOptions}
             value={formData.companies.map((company) => ({
@@ -129,6 +128,18 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
                   name: v.label,
                 })),
               }));
+            }}
+            styles={{
+              control: (provided) => ({
+                ...provided,
+                backgroundColor: "#e7e9ee",
+                border: "1px solid #d7d7d7",
+                marginTop: "1rem",
+                fontSize: "18px",
+                "&:hover": {
+                  border: "1px solid #d7d7d7",
+                },
+              }),
             }}
           />
         </div>
