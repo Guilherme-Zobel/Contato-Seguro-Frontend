@@ -209,3 +209,20 @@ test("Open modal on click + (plus) button", () => {
   expect(mockValue).toBeTruthy();
 });
 
+test("render Tabs buttons on App load", () => {
+  render(<App />);
+  const buttons = screen.getAllByRole("button");
+
+  let usersText = false;
+  let companyText = false;
+
+  for (let b of buttons) {
+    if (b.textContent?.includes("Usuários")) {
+      usersText = true;
+    } else if (b.textContent?.includes("Empresas")) {
+      companyText = true;
+    }
+  }
+  expect(usersText).toBeTruthy();
+  expect(companyText).toBeTruthy();
+});
