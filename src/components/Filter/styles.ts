@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { darken } from 'polished'
 
-export const Container = styled.div`
-  padding: 0 20px 20px 20px;
+export const Container = styled.div`  padding: 0 20px 0 20px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 5.5rem;
+  
  h2,p {
     color: var(--text-title);
     font-size: 1.1rem;
@@ -21,6 +21,7 @@ export const Container = styled.div`
     font-weight: 400;
     font-size: 1rem;
     transition: border-color 0.2s;
+
     &::placeholder {
       color: var(--gray-850);
     }
