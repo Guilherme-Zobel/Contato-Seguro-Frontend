@@ -27,7 +27,7 @@ export const Cointainer = styled.form`
     &:focus {
     outline: 0;
     box-shadow: 0 0 0 0;
-    border-color: ${darken(0.1, '#d7d7d7')};
+    border-color: ${darken(0.1, '#2684FF')};;
     } 
   }
 
@@ -84,4 +84,4 @@ export const StyledSideBySideInputs = styled.div`
       color: var(--text-title);
     }
   }
-`;
+  `;
