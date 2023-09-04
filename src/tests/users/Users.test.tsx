@@ -193,7 +193,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test("Open modal on click + (plus) button", () => {
+test("should open modal on click + (plus) button", () => {
   let mockValue = false;
   const mockOpenModal = jest.fn(() => (mockValue = true)) as () => void;
 
@@ -209,7 +209,7 @@ test("Open modal on click + (plus) button", () => {
   expect(mockValue).toBeTruthy();
 });
 
-test("render Tabs buttons on App load", () => {
+test("should render Tabs buttons on App load", () => {
   render(<App />);
   const buttons = screen.getAllByRole("button");
 
@@ -225,4 +225,27 @@ test("render Tabs buttons on App load", () => {
   }
   expect(usersText).toBeTruthy();
   expect(companyText).toBeTruthy();
+});
+
+test("should change selectedSection onClick", async () => {
+  let mockValue = 0;
+  const mockSetValue = jest.fn(
+    (newValue: number) => (mockValue = newValue)
+  ) as Dispatch<SetStateAction<number>>;
+
+  render(
+    <Tabs selectedSection={mockValue} setSelectedSection={mockSetValue} />
+  );
+
+  const companiesBtn = await screen.findByText("Empresas");
+  companiesBtn.click();
+
+  expect(mockSetValue).toHaveBeenCalledWith(dictionary.companySection);
+  expect(mockValue).toBe(dictionary.companySection);
+
+  const usersBtn = await screen.findByText("Usuários");
+  usersBtn.click();
+
+  expect(mockSetValue).toHaveBeenCalledWith(dictionary.userSection);
+  expect(mockValue).toBe(dictionary.userSection);
 });
