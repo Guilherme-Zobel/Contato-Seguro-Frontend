@@ -13,9 +13,6 @@ Este é o repositório do frontend do projeto Contato Seguro. Um projeto de cada
 - Styled Components 
 - Jest 
 
-## Vídeo Demostrativo 🎥
-# ![cadastro](https://github.com/Guilherme-Zobel/teste/blob/main/gravacao-projeto-contato-seguro.gif)
-
 ## Capturas de Tela 📸
 
 ![Captura de Tela 1](https://github.com/Guilherme-Zobel/Contato-Seguro-Frontend/assets/87620994/cfc7d1db-b418-4664-a255-36ca4bbdc5a5)
