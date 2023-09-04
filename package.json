@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/react-input-mask": "^3.0.2",
+    "@types/react-select": "^5.0.1",
     "moment": "^2.29.4",
     "polished": "^4.2.2",
     "react": "^18.2.0",
@@ -12,6 +13,7 @@
     "react-input-mask": "^2.0.4",
     "react-modal": "^3.14.4",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.4",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
