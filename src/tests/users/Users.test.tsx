@@ -192,3 +192,20 @@ test("should filter data from user table", () => {
 afterEach(() => {
   jest.clearAllMocks();
 });
+
+test("Open modal on click + (plus) button", () => {
+  let mockValue = false;
+  const mockOpenModal = jest.fn(() => (mockValue = true)) as () => void;
+
+  render(
+    <UserContext.Provider value={mockUserContext}>
+      <UserSection handleOpenModal={mockOpenModal} />
+    </UserContext.Provider>
+  );
+  const plusButton = screen.getByText("+");
+  plusButton.click();
+
+  expect(mockOpenModal).toHaveBeenCalled();
+  expect(mockValue).toBeTruthy();
+});
+
