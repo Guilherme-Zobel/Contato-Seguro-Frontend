@@ -3,7 +3,7 @@ import styled from "styled-components";
 const breakpoints = {
   small: '767px',
   medium: '992px',
-  large: '1200px',
+  large: '1300px',
 };
 
 export const Container = styled.div`
@@ -12,6 +12,7 @@ export const Container = styled.div`
   table {
     width: 100%;
     border-spacing: 0 0.5rem;
+    overflow-x: auto;
 
     th {
       color: var(--gray-300);
@@ -26,6 +27,9 @@ export const Container = styled.div`
 
     td {
       padding: 1rem 2rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 300px;
       border: 0;
       color: var(--gray-900);
       border-radius: 0.25rem;
@@ -43,6 +47,7 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: ${breakpoints.large}) {
-    overflow-x: auto;
+    overflow-x: scroll
+    ;
   }
 `;

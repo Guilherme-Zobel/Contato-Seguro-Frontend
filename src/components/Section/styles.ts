@@ -8,7 +8,7 @@ const breakpoints = {
 
 export const Container = styled.header`
   background: var(--gray-100);
-  max-width: 80.5rem;
+  max-width: 87rem;
   margin: 0 auto; 
   border-radius: 0.25rem;
 
@@ -26,7 +26,9 @@ export const Container = styled.header`
 `;
 
 export const Content = styled.div`
-  max-width: 1120px;
+  max-width: auto;
+  overflow: hidden;
+  white-space: nowrap; 
   padding: 2rem 1rem 3rem;
   display: flex;
   align-items: center;
