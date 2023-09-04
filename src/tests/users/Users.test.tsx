@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import App from "../../App";
+import { fireEvent, render, screen } from "@testing-library/react";
 import usersJson from "../../data/user.json";
 import { formatPhone } from "../../utils/formatPhone";
 import moment from "moment";
@@ -80,4 +80,16 @@ test("should insert an user", () => {
     screen.getByText(moment(newUserData.birthdate).format("DD/MM/YYYY"))
   ).toBeTruthy();
   expect(screen.getByText(newUserData.city)).toBeTruthy();
+});
+
+test("should delete an user", () => {
+  const { container } = render(<App />);
+  const firstLine = container.querySelectorAll("tbody tr")[0];
+  const firstLineName = firstLine.querySelectorAll("td")[0].innerHTML;
+
+  const firstLineDeleteIcon =
+    firstLine.querySelectorAll("td > button > svg")[0];
+
+  fireEvent.click(firstLineDeleteIcon);
+  expect(screen.queryByText(firstLineName)).toBeNull();
 });
