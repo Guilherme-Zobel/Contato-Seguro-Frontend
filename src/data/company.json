@@ -1,0 +1,25 @@
+{
+  "rows": [
+    {
+      "id": 1,
+      "name": "Contato Seguro",
+      "phone": "5130861800",
+      "cnpj": "78820988000122",
+      "address": "Av. Carlos Gomes, 466 / 501 - Boa Vista, Porto Alegre RS"
+    },
+    {
+      "id": 2,
+      "name": "Compliance Total",
+      "phone": "5424590409",
+      "cnpj": "93061335000109",
+      "address": "Av. 25 de Setembro, 888 - Dois Irmãos RS"
+    },
+    {
+      "id": 3,
+      "name": "Compliance Station",
+      "phone": "4728958131",
+      "cnpj": "18767178000128",
+      "address": "Av. Rio Branco, 719 - Florianópolis SC"
+    }
+  ]
+}
