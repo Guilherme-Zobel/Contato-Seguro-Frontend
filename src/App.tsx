@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tabs } from "./components/Tabs";
 import { UserProvider } from "./Context/UserContext";
 import { GlobalStyle } from "./styles/global";
-import { UserSection } from "./components/Section/user"
+import { UserSection } from "./components/Section/UserSection"
 import { UserModal } from "./components/Modal.tsx/UserModal";
 import { Container } from "./components/Section/styles";
 import dictionary from "./utils/dictionary";
