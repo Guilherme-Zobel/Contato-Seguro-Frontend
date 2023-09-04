@@ -50,10 +50,10 @@ test("should insert an company data", () => {
   const phoneInput = screen.getByPlaceholderText("Telefone");
   fireEvent.change(phoneInput, { target: { value: companyData.phone } });
 
-  const cnpjInput = screen.getByPlaceholderText("CNPJ");
+  const cnpjInput = screen.getByPlaceholderText("CNPJ*");
   fireEvent.change(cnpjInput, { target: { value: companyData.cnpj } });
 
-  const addressInput = screen.getByPlaceholderText("Endereço");
+  const addressInput = screen.getByPlaceholderText("Endereço*");
   fireEvent.change(addressInput, { target: { value: companyData.address } });
 
   const sendButton = screen.getByText("Enviar");
@@ -95,10 +95,10 @@ test("should update an company data", () => {
   const phoneInput = screen.getByPlaceholderText("Telefone");
   fireEvent.change(phoneInput, { target: { value: companyData.phone } });
 
-  const cnpjInput = screen.getByPlaceholderText("CNPJ");
+  const cnpjInput = screen.getByPlaceholderText("CNPJ*");
   fireEvent.change(cnpjInput, { target: { value: companyData.cnpj } });
 
-  const addressInput = screen.getByPlaceholderText("Endereço");
+  const addressInput = screen.getByPlaceholderText("Endereço*");
   fireEvent.change(addressInput, { target: { value: companyData.address } });
 
   const sendButton = screen.getByText("Enviar");

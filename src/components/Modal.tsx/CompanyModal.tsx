@@ -54,8 +54,10 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
   function handleFormSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
-    if (formData.name.trim() === "") {
-      return window.alert("Nome é obrigatório");
+    if (formData.name.trim() === ""
+    || formData.cnpj.trim() === ""
+    || formData.address.trim() === "") {
+      return window.alert("Nome, CNPJ, Endereço são obrigatórios");
     }
 
     updateOrInsertRegistration();
@@ -97,7 +99,7 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
 
           <InputMask
             mask="99.999.999/9999-99"
-            placeholder="CNPJ"
+            placeholder="CNPJ*"
             value={formData.cnpj}
             onChange={({ target: { value } }) =>
               setFormData((prevState) => ({ ...prevState, cnpj: value }))
@@ -106,7 +108,7 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
         </StyledSideBySideInputs>
 
         <input
-          placeholder="Endereço"
+          placeholder="Endereço*"
           value={formData.address}
           onChange={({ target: { value } }) =>
             setFormData((prevState) => ({ ...prevState, address: value }))
