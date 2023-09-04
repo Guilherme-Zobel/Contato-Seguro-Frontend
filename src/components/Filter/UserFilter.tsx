@@ -25,6 +25,7 @@ export function UserFilter() {
       </div>
       <form>
         <select
+          data-testid="columns-search"
           value={ columnFilter }
           onChange={ (e) => handleFilterColumn(e) }
         >
