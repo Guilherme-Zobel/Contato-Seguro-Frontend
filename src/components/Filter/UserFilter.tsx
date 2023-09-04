@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 export function UserFilter() {
   
-  const { setSearchValue, columnFilter, setColumnFilter } = useContext(UserContext);
+  const { searchValue, setSearchValue, columnFilter, setColumnFilter } = useContext(UserContext);
   
   const handleFilterSearch = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(value);
@@ -20,6 +20,7 @@ export function UserFilter() {
         <input
           placeholder="Buscar..."
           autoFocus
+          value={searchValue}
           onChange={(e) => handleFilterSearch(e)}
         />
       </div>

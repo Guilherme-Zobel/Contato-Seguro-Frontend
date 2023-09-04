@@ -3,7 +3,7 @@ import { Container } from "./styles";
 import { CompanyContext, ICompanyValue } from "../../Context/CompanyContext";
 
 export function CompanyFilter() {
-  const { setSearchValue, columnFilter, setColumnFilter } =
+  const { searchValue, setSearchValue, columnFilter, setColumnFilter } =
     useContext(CompanyContext);
 
   const handleFilterSearch = ({
@@ -25,6 +25,7 @@ export function CompanyFilter() {
           placeholder="Buscar..."
           autoFocus
           data-testid="columns-search"
+          value={searchValue}
           onChange={(e) => handleFilterSearch(e)}
         />
       </div>
