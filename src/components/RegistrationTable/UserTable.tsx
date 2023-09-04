@@ -6,10 +6,10 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
 
 interface UserTableProps {
-  openModal: () => void;
+  handleOpenModal: () => void;
 }
 
-export function UserTable({ openModal }: UserTableProps) {
+export function UserTable({ handleOpenModal }: UserTableProps) {
   const {
     searchValue,
     columnFilter,
@@ -25,7 +25,7 @@ export function UserTable({ openModal }: UserTableProps) {
 
   function handleEdit(id: number) {
     setIdRegistration(id);
-    openModal();
+    handleOpenModal();
   }
 
   const filterRow = userValue.filter((row: IUserValue) =>

@@ -9,18 +9,18 @@ import dictionary from "./utils/dictionary";
 import { CompanyProvider } from "./Context/CompanyContext";
 
 function App() {
-  const [isNewRegistrationModalOpen, setIsNewRegistrationModalOpen] = useState(false);
+  const [isOpenModal, setIsModalOpen] = useState(false);
 
   const [selectedSection, setSelectedSection] = useState(
     dictionary.userSection
   );
 
   function handleOpenModal() {
-    setIsNewRegistrationModalOpen(true);
+    setIsModalOpen(true);
   }
 
   function handleCloseModal() {
-    setIsNewRegistrationModalOpen(false);
+    setIsModalOpen(false);
   }
 
   return (
@@ -32,10 +32,10 @@ function App() {
             selectedSection={selectedSection}
             />
           <UserSection
-            openModal={handleOpenModal}
+            handleOpenModal={handleOpenModal}
           />
           <UserModal
-            isOpen={isNewRegistrationModalOpen}
+            isOpenModal={isOpenModal}
             closeModal={handleCloseModal}
           />
         </Container>

@@ -4,20 +4,20 @@ import { UserFilter } from '../Filter/UserFilter';
 import { Container, Content } from './styles'
 
 interface FormProps {
-  openModal: () => void;
+  handleOpenModal: () => void;
 }
 
-export function UserSection({ openModal }: FormProps) {
+export function UserSection({ handleOpenModal }: FormProps) {
   return (
     <Container>
       <Content>
       <img src={logoImg} alt="logo-contato-seguro"/>
-        <button type="button" onClick={() => openModal()}>
+        <button type="button" onClick={() => handleOpenModal()}>
           <span>+</span>
         </button>
       </Content>
       <UserFilter/>
-      <UserTable openModal={openModal}/>
+      <UserTable handleOpenModal={handleOpenModal}/>
     </Container>
   )
 }

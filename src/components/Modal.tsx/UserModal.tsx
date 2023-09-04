@@ -8,11 +8,11 @@ import { idGenerator } from "../../utils/idGenerator";
 
 
 interface UserModalProps {
-  isOpen: boolean;
+  isOpenModal: boolean;
   closeModal: () => void;
 }
 
-export function UserModal({ isOpen, closeModal }: UserModalProps) {
+export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
   const initialValue: IUserValue = {
     id: 0,
     name: "",
@@ -28,11 +28,11 @@ export function UserModal({ isOpen, closeModal }: UserModalProps) {
   const [formData, setFormData] = useState(initialValue);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpenModal) {
       const editValue = userValue?.find((row) => row.id === idRegistration);
       setFormData(editValue || initialValue);
     }
-  }, [isOpen]);
+  }, [isOpenModal]);
 
   function handleClear() {
     setFormData(initialValue);
@@ -68,7 +68,7 @@ export function UserModal({ isOpen, closeModal }: UserModalProps) {
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={isOpenModal}
       onRequestClose={closeModal}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
