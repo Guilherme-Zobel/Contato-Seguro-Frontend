@@ -1,8 +1,9 @@
 # Contato Seguro Frontend 📱
 
-Este é o repositório do frontend do projeto Contato Seguro. Um projeto de cadastros de usuários e empresas vinculados.
+Este é o repositório do frontend do projeto de teste técnico da Contato Seguro.
+Um projeto de cadastros de usuários com cadastros de empresas vinculadas.
 
-## Acesso ao Projeto 🚀
+## Acesso ao Projeto na Web 🚀
 
 - [Link do Projeto](https://contato-seguro-frontend-beta.vercel.app/)
 
@@ -11,7 +12,11 @@ Este é o repositório do frontend do projeto Contato Seguro. Um projeto de cada
 - React
 - TypeScript 
 - Styled Components 
-- Jest 
+- Jest
+
+## Vídeo Demostrativo 🎥
+# ![cadastro](https://github.com/Guilherme-Zobel/teste/blob/main/gif-contato-seguro.gif)
+
 
 ## Capturas de Tela 📸
 
@@ -40,8 +45,6 @@ yarn start | npm run start
 ```
 
 ## Resposta do participante
-Um projeto com bastante apredizados em Styled Components, consegui melhorar meus conhecimentos que tinha sobre essa biblioteca na qual acho incrível.
-A dificuldade em estilizar surgiu somente pela lib usada chamada React Select, usada pra selecionar várias empresas no select, sua estilização era bem difícil de alterar,
-consegui resolver somente fazendo ajustes nas suas próprias propriedades.
-
-
+Um projeto com bastante apredizados em React, TypeScript, Jest e em Styled Components, consegui melhorar meus conhecimentos nessas áreas e sobre Styled Components na qual acho incrível. <br/>
+A dificuldade em estilizar surgiu somente pela lib usada no projeto chamada React Select, usada pra selecionar várias empresas no select, sua estilização era bem difícil de alterar, consegui resolver somente fazendo ajustes nas suas próprias propriedades. <br/>
+No React o maior desafio era sincronizar os dois cadastros de usuários e empresas, sendo que um usuário poderia ter mais de uma empresa cadastrada, e consegui fazer de maneira bem performática essa lógica.
