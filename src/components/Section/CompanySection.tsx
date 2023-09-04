@@ -2,7 +2,7 @@ import logoImg from '../../assets/logo.png'
 import { CompanyFilter } from '../Filter/CompanyFilter';
 import { CompanyTable } from '../RegistrationTable/CompanyTable';
 import { Content } from './styles'
-import { UserContext } from '../../Context/UserContext';
+import { CompanyContext } from '../../Context/CompanyContext';
 import { useContext } from 'react';
 
 interface ComapanySectionProps {
@@ -11,9 +11,9 @@ interface ComapanySectionProps {
 
 
 export function CompanySection({ handleOpenModal }: ComapanySectionProps) {
-  const {setIdRegistration} = useContext(UserContext)
+  const {setIdRegistration} = useContext(CompanyContext)
 
-  function showModal() {
+  function openEmptyModal() {
     handleOpenModal()
     setIdRegistration(0)
   }
@@ -21,7 +21,7 @@ export function CompanySection({ handleOpenModal }: ComapanySectionProps) {
     <>
       <Content>
         <img src={logoImg} alt="logo-contato-seguro" />
-        <button type="button" onClick={() => showModal()}>
+        <button type="button" onClick={() => openEmptyModal()}>
           <span>+</span>
         </button>
       </Content>

@@ -20,7 +20,7 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
     address: "",
   };
 
-  const { idRegistration, setIdRegistration, companyValue, setCompanyValue } =
+  const { idRegistration, companyValue, setCompanyValue } =
     useContext(CompanyContext);
 
   const [formData, setFormData] = useState(initialValue);

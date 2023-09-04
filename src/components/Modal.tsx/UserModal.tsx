@@ -36,7 +36,6 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
     if (isOpenModal) {
       const editValue = userValue?.find((row) => row.id === idRegistration);
       setFormData(editValue || initialValue);
-
       setCompanyOptions([]);
       companyValue.map((company) =>
         setCompanyOptions((value) => [
