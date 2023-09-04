@@ -93,3 +93,82 @@ test("should delete an user", () => {
   fireEvent.click(firstLineDeleteIcon);
   expect(screen.queryByText(firstLineName)).toBeNull();
 });
+
+test("should update an user", () => {
+  const { container } = render(<App />);
+
+  const newUserData: IUserValue = {
+    id: 0,
+    name: "Nome de Teste",
+    companies: [
+      {
+        id: 1,
+        name: "Contato Seguro",
+      },
+      {
+        id: 2,
+        name: "Compliance Total",
+      },
+    ],
+    email: "teste@teste.teste",
+    phone: "(61) 98765-4321",
+    birthdate: "2010-10-10",
+    city: "Lavras",
+    icons: "null",
+  };
+
+  expect(screen.queryByText(newUserData.name)).toBeNull();
+  expect(screen.queryByText(newUserData.email)).toBeNull();
+  expect(screen.queryByText(formatPhone(newUserData.phone))).toBeNull();
+  expect(
+    screen.queryByText(moment(newUserData.birthdate).format("DD/MM/YYYY"))
+  ).toBeNull();
+  expect(screen.queryByText(newUserData.city)).toBeNull();
+
+  const firstLine = container.querySelectorAll("tbody tr")[0];
+  const firstLineName = firstLine.querySelectorAll("td")[0].innerHTML;
+
+  const firstLineUpdateIcon =
+    firstLine.querySelectorAll("td > button > svg")[1];
+
+  fireEvent.click(firstLineUpdateIcon);
+
+  const nameInput = screen.getByPlaceholderText("Nome*");
+  fireEvent.change(nameInput, { target: { value: newUserData.name } });
+
+  const emailInput = screen.getByPlaceholderText("E-mail*");
+  fireEvent.change(emailInput, { target: { value: newUserData.email } });
+
+  const selectInput = screen
+    .getByTestId("select-companies")
+    .querySelector("custom-select");
+  newUserData.companies.map((company) => {
+    if (selectInput) {
+      fireEvent.click(selectInput);
+      fireEvent.click(screen.getByText(company.name));
+    }
+  });
+
+  const phoneInput = screen.getByPlaceholderText("(00) 00000-0000");
+  fireEvent.change(phoneInput, { target: { value: newUserData.phone } });
+
+  const birthdateInput = screen.getByPlaceholderText("Data de Nascimento");
+  fireEvent.change(birthdateInput, {
+    target: { value: newUserData.birthdate },
+  });
+
+  const cityInput = screen.getByPlaceholderText("Cidade onde nasceu");
+  fireEvent.change(cityInput, { target: { value: newUserData.city } });
+
+  const sendButton = screen.getByText("Enviar");
+  fireEvent.click(sendButton);
+
+  expect(screen.queryByText("Inserir")).toBe(null);
+  expect(screen.getByText(newUserData.name)).toBeTruthy();
+  expect(screen.getByText(newUserData.email)).toBeTruthy();
+  expect(screen.getByText(formatPhone(newUserData.phone))).toBeTruthy();
+  expect(
+    screen.getByText(moment(newUserData.birthdate).format("DD/MM/YYYY"))
+  ).toBeTruthy();
+  expect(screen.getByText(newUserData.city)).toBeTruthy();
+});
