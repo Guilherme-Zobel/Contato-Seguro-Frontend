@@ -1,9 +1,15 @@
-import App from "../../App";
 import { fireEvent, render, screen } from "@testing-library/react";
+import React, { Dispatch, SetStateAction } from "react";
+import App from "../../App";
 import usersJson from "../../data/user.json";
 import { formatPhone } from "../../utils/formatPhone";
 import moment from "moment";
 import { IUserValue } from "../../Context/UserContext";
+import { UserSection } from "../../components/Section/UserSection";
+import { UserContext } from "../../Context/UserContext";
+import mockUserContext from "../utils/userContext";
+import { Tabs } from "../../components/Tabs";
+import dictionary from "../../utils/dictionary";
 
 test("Should show the list of users", () => {
   render(<App />);
@@ -171,4 +177,18 @@ test("should update an user", () => {
     screen.getByText(moment(newUserData.birthdate).format("DD/MM/YYYY"))
   ).toBeTruthy();
   expect(screen.getByText(newUserData.city)).toBeTruthy();
+});
+
+test("should filter data from user table", () => {
+  render(<App />);
+  const columnsSearchInput = screen.getByTestId("columns-search");
+  fireEvent.change(columnsSearchInput, { target: { values: "email" } });
+  const searchInput = screen.getByPlaceholderText("Buscar...");
+  fireEvent.change(searchInput, { target: { value: "Nome de Teste" } });
+  expect(screen.getByText("Nome de Teste")).toBeTruthy();
+  expect(screen.queryByText("Anderson")).toBeNull();
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
 });
