@@ -15,7 +15,7 @@ Um projeto de cadastros de usuários com cadastros de empresas vinculadas.
 - Jest
 
 ## Vídeo Demostrativo 🎥
-# ![cadastro](https://github.com/Guilherme-Zobel/teste/blob/main/gif-contato-seguro.gif)
+# ![cadastro](https://github.com/Guilherme-Zobel/teste/blob/main/gif-contato-seguro-frontend.gif)
 
 
 ## Capturas de Tela 📸
@@ -24,9 +24,11 @@ Um projeto de cadastros de usuários com cadastros de empresas vinculadas.
 
 ![Captura de Tela 2](https://github.com/Guilherme-Zobel/Contato-Seguro-Frontend/assets/87620994/fa91632b-a9ab-458a-90ce-8539981dd2e4)
 
-![Captura de Tela 3](https://github.com/Guilherme-Zobel/Contato-Seguro-Frontend/assets/87620994/f6567fe8-4086-4926-bbba-1d9c743e20be)
+![Captura de Tela 3](https://github.com/Guilherme-Zobel/Contato-Seguro-Frontend/assets/87620994/1628e586-23a1-4ddb-895c-ed1bd5c15270)
+)
 
-![Captura de Tela 4](https://github.com/Guilherme-Zobel/Contato-Seguro-Frontend/assets/87620994/162df7dc-9a92-472c-aa38-e1334912cdc8)
+![Captura de Tela 4](https://github.com/Guilherme-Zobel/Contato-Seguro-Frontend/assets/87620994/94845022-c8ad-4af8-863f-452c1e371ab2)
+
 
 ## Como Usar 🤔
 
