@@ -116,7 +116,5 @@ test("change filterSearch on type", async () => {
 
   fireEvent.change(input, { target: { value: "Seguro" } });
 
-  screen.debug();
-
   expect(screen.getByText("Contato Seguro")).toBeInTheDocument();
 });
