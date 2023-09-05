@@ -4,6 +4,7 @@ import { ICompanyValue, CompanyContext } from "../../Context/CompanyContext";
 import { UserContext } from "../../Context/UserContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
+import { formatCnpj } from "../../utils/formatCnpj";
 
 interface CompanyTableProps {
   handleOpenModal: () => void;
@@ -60,7 +61,7 @@ export function CompanyTable({ handleOpenModal }: CompanyTableProps) {
               <tr key={row.id}>
                 <td>{row.name}</td>
                 <td>{formatPhone(row.phone)}</td>
-                <td>{row.cnpj}</td>
+                <td>{formatCnpj(row.cnpj)}</td>
                 <td>{row.address}</td>
                 <td>
                   <button>
