@@ -8,12 +8,7 @@ import { IUserValue, UserContext } from "../../Context/UserContext";
 import { CompanyContext } from "../../Context/CompanyContext";
 import { idGenerator } from "../../utils/idGenerator";
 
-interface UserModalProps {
-  isOpenModal: boolean;
-  closeModal: () => void;
-}
-
-export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
+export function UserModal() {
   const initialValue: IUserValue = {
     id: 0,
     name: "",
@@ -25,12 +20,16 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
     icons: "null",
   };
 
-  const { idRegistration, userValue, setUserValue } = useContext(UserContext);
+  const { idRegistration, userValue, setUserValue, isOpenModal, setIsOpenModal } = useContext(UserContext);
   const { companyValue } = useContext(CompanyContext);
   const [formData, setFormData] = useState(initialValue);
   const [companyOptions, setCompanyOptions] = useState<
     { value: number; label: string }[]
   >([]);
+
+  function handleCloseModal() {
+    setIsOpenModal(false);
+  }
 
   useEffect(() => {
     if (isOpenModal) {
@@ -69,23 +68,27 @@ export function UserModal({ isOpenModal, closeModal }: UserModalProps) {
   function handleFormSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
-    if (formData.name.trim() === "" || formData.email.trim() === "") {
-      return window.alert("Nome e E-mail são obrigatórios");
+    if (
+    formData.name.trim() === "" ||
+    formData.email.trim() === "" ||
+    formData.companies.length === 0 
+    ) {
+      return window.alert("Nome, E-mail e Empresas são obrigatórios");
     }
 
     updateOrInsertRegistration();
-    closeModal();
+    handleCloseModal();
     handleClear();
   }
 
   return (
     <Modal
       isOpen={isOpenModal}
-      onRequestClose={closeModal}
+      onRequestClose={handleCloseModal}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <button type="button" onClick={closeModal} className="react-modal-close">
+      <button type="button" onClick={handleCloseModal} className="react-modal-close">
         <img src={closeImg} alt="Fechar modal" />
       </button>
       <Cointainer>
