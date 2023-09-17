@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { darken } from 'polished'
 
-export const Container = styled.div`  padding: 0 20px 0 20px;
+export const Container = styled.div`
+  padding: 0 20px 0 20px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 5.5rem;
