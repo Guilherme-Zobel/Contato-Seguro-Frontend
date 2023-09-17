@@ -5,16 +5,12 @@ import { Container, Content } from './styles'
 import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContext';
 
-interface FormProps {
-  handleOpenModal: () => void;
-}
-
-export function UserSection({ handleOpenModal }: FormProps) {
-  const {setIdRegistration} = useContext(UserContext)
+export function UserSection() {
+  const {setIdRegistration, setIsOpenModal} = useContext(UserContext);
 
   function openEmptyModal() {
-    handleOpenModal()
-    setIdRegistration(0)
+    setIsOpenModal(true);
+    setIdRegistration(0);
   }
 
   return (
@@ -26,7 +22,7 @@ export function UserSection({ handleOpenModal }: FormProps) {
         </button>
       </Content>
       <UserFilter/>
-      <UserTable handleOpenModal={handleOpenModal}/>
+      <UserTable />
     </Container>
   )
 }

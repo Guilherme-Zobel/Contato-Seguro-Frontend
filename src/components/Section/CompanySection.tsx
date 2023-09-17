@@ -5,16 +5,11 @@ import { Content } from './styles'
 import { CompanyContext } from '../../Context/CompanyContext';
 import { useContext } from 'react';
 
-interface ComapanySectionProps {
-  handleOpenModal: () => void;
-}
-
-
-export function CompanySection({ handleOpenModal }: ComapanySectionProps) {
-  const {setIdRegistration} = useContext(CompanyContext)
+export function CompanySection() {
+  const {setIdRegistration, setIsOpenModal} = useContext(CompanyContext)
 
   function openEmptyModal() {
-    handleOpenModal()
+    setIsOpenModal(true)
     setIdRegistration(0)
   }
   return (
@@ -26,7 +21,7 @@ export function CompanySection({ handleOpenModal }: ComapanySectionProps) {
         </button>
       </Content>
       <CompanyFilter/>
-      <CompanyTable handleOpenModal={handleOpenModal}/>
+      <CompanyTable/>
     </>
   )
 }
