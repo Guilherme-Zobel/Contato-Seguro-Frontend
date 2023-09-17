@@ -6,17 +6,14 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
 import { formatCnpj } from "../../utils/formatCnpj";
 
-interface CompanyTableProps {
-  handleOpenModal: () => void;
-}
-
-export function CompanyTable({ handleOpenModal }: CompanyTableProps) {
+export function CompanyTable() {
   const {
     searchValue,
     columnFilter,
     companyValue,
     setCompanyValue,
     setIdRegistration,
+    setIsOpenModal,
   } = useContext(CompanyContext);
   const { userValue, setUserValue } = useContext(UserContext);
 
@@ -33,7 +30,7 @@ export function CompanyTable({ handleOpenModal }: CompanyTableProps) {
 
   function handleEdit(id: number) {
     setIdRegistration(id);
-    handleOpenModal();
+    setIsOpenModal(true);
   }
 
   const filterRow = companyValue.filter((row: ICompanyValue) =>

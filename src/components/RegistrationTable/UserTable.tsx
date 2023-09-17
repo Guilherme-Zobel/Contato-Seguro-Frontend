@@ -6,17 +6,14 @@ import { CompanyContext } from "../../Context/CompanyContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
 
-interface UserTableProps {
-  handleOpenModal: () => void;
-}
-
-export function UserTable({ handleOpenModal }: UserTableProps) {
+export function UserTable() {
   const {
     searchValue,
     columnFilter,
     userValue,
     setUserValue,
     setIdRegistration,
+    setIsOpenModal,
   } = useContext(UserContext);
   const { companyValue } = useContext(CompanyContext);
 
@@ -27,15 +24,24 @@ export function UserTable({ handleOpenModal }: UserTableProps) {
 
   function handleEdit(id: number) {
     setIdRegistration(id);
-    handleOpenModal();
+    setIsOpenModal(true);
   }
 
-  const filterRow = userValue.filter((row: IUserValue) =>
-    row[columnFilter]
+  const filterRows = userValue.filter((row: IUserValue) => {
+   const searchValueLower = searchValue.toLowerCase();
+
+    if (columnFilter === 'companies') {
+      const userCompanies = companyValue.filter(({ id }) => row.companies.includes(id));
+      return userCompanies.length === 0
+        ? true
+        : userCompanies.find(({ name }) => name.toLowerCase().includes(searchValueLower))
+   }
+
+    return row[columnFilter]
       .toString()
       .toLowerCase()
-      .includes(searchValue.toLowerCase())
-  );
+      .includes(searchValueLower)
+  });
 
   return (
     <Container>
@@ -52,8 +58,8 @@ export function UserTable({ handleOpenModal }: UserTableProps) {
           </tr>
         </thead>
         <tbody>
-          {filterRow.length > 0 &&
-            filterRow.map((row) => (
+          {filterRows.length > 0 &&
+            filterRows.map((row) => (
               <tr key={row.id}>
                 <td>{row.name}</td>
                 <td style={{ whiteSpace: "pre-line" }}>
