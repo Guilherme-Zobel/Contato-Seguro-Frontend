@@ -31,6 +31,7 @@ export function UserFilter() {
           onChange={ (e) => handleFilterColumn(e) }
         >
           <option value="name">Nome</option>
+          <option value="companies">Empresa</option>
           <option value="email">Email</option>
           <option value="phone">Telefone</option>
           <option value="birthdate">Nascimento</option>
