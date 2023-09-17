@@ -9,6 +9,8 @@ const mockCompanyContext: ContextData = {
   setSearchValue: jest.fn(),
   setCompanyValue: jest.fn(),
   companyValue: [],
+  isOpenModal: false,
+  setIsOpenModal: jest.fn()
 };
 
 export default mockCompanyContext;

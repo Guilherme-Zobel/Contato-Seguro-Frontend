@@ -5,9 +5,10 @@ import { CompanyContext, ICompanyValue } from "../../Context/CompanyContext";
 import { CompanyModal } from "../../components/Modal.tsx/CompanyModal";
 
 test("Should open an insert modal", () => {
+  mockCompanyContext.isOpenModal = true;
   render(
     <CompanyContext.Provider value={mockCompanyContext}>
-      <CompanyModal isOpenModal={true} closeModal={jest.fn()} />
+      <CompanyModal />
     </CompanyContext.Provider>
   );
 
@@ -15,24 +16,24 @@ test("Should open an insert modal", () => {
 });
 
 test("Should close the insert modal", () => {
-  const mockCloseModal = jest.fn();
+  mockCompanyContext.isOpenModal = true;
   render(
     <CompanyContext.Provider value={mockCompanyContext}>
-      <CompanyModal isOpenModal={true} closeModal={mockCloseModal} />
+      <CompanyModal />
     </CompanyContext.Provider>
   );
 
   const closeButton = screen.getByAltText("Fechar modal");
 
   fireEvent.click(closeButton);
-  expect(mockCloseModal).toBeCalled();
+  expect(mockCompanyContext.setIsOpenModal).toBeCalled();
 });
 
 test("should insert an company data", () => {
-  const mockCloseModal = jest.fn();
+  mockCompanyContext.isOpenModal = true;
   render(
     <CompanyContext.Provider value={mockCompanyContext}>
-      <CompanyModal isOpenModal={true} closeModal={mockCloseModal} />
+      <CompanyModal />
     </CompanyContext.Provider>
   );
 
@@ -75,9 +76,10 @@ test("should update an company data", () => {
 
   mockCompanyContext.idRegistration = 1;
   mockCompanyContext.companyValue = [oldCompanyData];
+  mockCompanyContext.isOpenModal = true;
   render(
     <CompanyContext.Provider value={mockCompanyContext}>
-      <CompanyModal isOpenModal={true} closeModal={mockCloseModal} />
+      <CompanyModal />
     </CompanyContext.Provider>
   );
 

@@ -9,6 +9,8 @@ const mockUserContext: ContextData = {
   setSearchValue: jest.fn(),
   setUserValue: jest.fn(),
   userValue: [],
+  isOpenModal: false,
+  setIsOpenModal: jest.fn(),
 };
 
 export default mockUserContext;

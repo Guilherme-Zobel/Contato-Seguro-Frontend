@@ -54,6 +54,7 @@ test("should insert an user", () => {
   fireEvent.change(emailInput, { target: { value: newUserData.email } });
 
   const selectInput = screen.getByText("Selecione suas empresas...");
+
   newUserData.companies.map((companyId) => {
     const companyName = rowsCompanyData.find(({ id }) => id === companyId)?.name;
     if (!companyName) {
@@ -191,17 +192,17 @@ afterEach(() => {
 
 test("should open modal on click + (plus) button", () => {
   let mockValue = false;
-  const mockOpenModal = jest.fn(() => (mockValue = true)) as () => void;
+  mockUserContext.setIsOpenModal = jest.fn(() => (mockValue = true)) as () => void;
 
   render(
     <UserContext.Provider value={mockUserContext}>
-      <UserSection handleOpenModal={mockOpenModal} />
+      <UserSection />
     </UserContext.Provider>
   );
   const plusButton = screen.getByText("+");
   plusButton.click();
 
-  expect(mockOpenModal).toHaveBeenCalled();
+  expect(mockUserContext.setIsOpenModal).toHaveBeenCalled();
   expect(mockValue).toBeTruthy();
 });
 
@@ -230,7 +231,7 @@ test("should change selectedSection onClick", async () => {
   ) as Dispatch<SetStateAction<number>>;
 
   render(
-    <Tabs selectedSection={mockValue} setSelectedSection={mockSetValue} />
+    <Tabs />
   );
 
   const companiesBtn = await screen.findByText("Empresas");
