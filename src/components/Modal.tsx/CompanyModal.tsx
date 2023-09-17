@@ -6,12 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { ICompanyValue, CompanyContext } from "../../Context/CompanyContext";
 import { idGenerator } from "../../utils/idGenerator";
 
-interface CompanyModalProps {
-  isOpenModal: boolean;
-  closeModal: () => void;
-}
-
-export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
+export function CompanyModal() {
   const initialValue: ICompanyValue = {
     id: 0,
     name: "",
@@ -20,9 +15,8 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
     address: "",
   };
 
-  const { idRegistration, companyValue, setCompanyValue } =
+  const { idRegistration, companyValue, setCompanyValue, isOpenModal, setIsOpenModal } =
     useContext(CompanyContext);
-
   const [formData, setFormData] = useState(initialValue);
 
   useEffect(() => {
@@ -33,7 +27,13 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
   }, [isOpenModal]);
 
   function handleClear() {
-    setFormData(initialValue);
+    const { id: idRegistration, ...rest } = initialValue;
+    const clearValue = { id: idRegistration, ...rest };
+    setFormData(clearValue);
+  }
+
+  function handleCloseModal() {
+    setIsOpenModal(false)
   }
 
   function updateOrInsertRegistration() {
@@ -61,18 +61,18 @@ export function CompanyModal({ isOpenModal, closeModal }: CompanyModalProps) {
     }
 
     updateOrInsertRegistration();
-    closeModal();
+    setIsOpenModal(false);
     handleClear();
   }
 
   return (
     <Modal
       isOpen={isOpenModal}
-      onRequestClose={closeModal}
+      onRequestClose={handleCloseModal}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <button type="button" onClick={closeModal} className="react-modal-close">
+      <button type="button" onClick={() => setIsOpenModal(false)} className="react-modal-close">
         <img src={closeImg} alt="Fechar modal" />
       </button>
       <Cointainer>
