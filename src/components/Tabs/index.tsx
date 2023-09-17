@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, selectedTab } from "./styles";
+import { Container, TabButton } from "./styles";
 import { UserSection } from "../Section/UserSection";
 import { CompanySection } from "../Section/CompanySection";
 import { UserModal } from "../Modal.tsx/UserModal";
@@ -12,16 +12,16 @@ export function Tabs() {
   return (
     <>
     <Container>
-      <button
-        style={selectedSection === dictionary.userSection ? selectedTab : {}}
+      <TabButton
+        className={selectedSection === dictionary.userSection ? 'selected' : ''}
         onClick={() => setSelectedSection(dictionary.userSection)}>
         Usuários
-      </button>
-      <button
-        style={selectedSection === dictionary.companySection ? selectedTab : {}}
+      </TabButton>
+      <TabButton
+        className={selectedSection === dictionary.companySection ? 'selected' : ''}
         onClick={() => setSelectedSection(dictionary.companySection)}>
         Empresas
-      </button>
+      </TabButton>
     </Container>
     {selectedSection === dictionary.userSection && (
         <>
