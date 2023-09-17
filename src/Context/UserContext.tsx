@@ -30,6 +30,8 @@ export type ContextData = {
   setUserValue: React.Dispatch<React.SetStateAction<IUserValue[]>>;
   idRegistration: number;
   setIdRegistration: React.Dispatch<React.SetStateAction<number>>;
+  isOpenModal: boolean;
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const UserContext = createContext<ContextData>({} as ContextData);
@@ -39,6 +41,7 @@ export const UserProvider = (props: ContextProps) => {
   const [columnFilter, setColumnFilter] = useState("name" as keyof IUserValue);
   const [userValue, setUserValue] = useState(userData.rows);
   const [idRegistration, setIdRegistration] = useState(0);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const providerValue: ContextData = {
     searchValue,
@@ -49,6 +52,8 @@ export const UserProvider = (props: ContextProps) => {
     setUserValue,
     idRegistration,
     setIdRegistration,
+    isOpenModal,
+    setIsOpenModal,
   };
 
   return <UserContext.Provider value={providerValue} {...props} />;

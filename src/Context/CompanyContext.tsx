@@ -22,17 +22,18 @@ export type ContextData = {
   setCompanyValue: React.Dispatch<React.SetStateAction<ICompanyValue[]>>;
   idRegistration: number;
   setIdRegistration: React.Dispatch<React.SetStateAction<number>>;
+  isOpenModal: boolean;
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const CompanyContext = createContext<ContextData>({} as ContextData);
 
 export const CompanyProvider = (props: ContextProps) => {
   const [searchValue, setSearchValue] = useState("");
-  const [columnFilter, setColumnFilter] = useState(
-    "name" as keyof ICompanyValue
-  );
+  const [columnFilter, setColumnFilter] = useState("name" as keyof ICompanyValue);
   const [companyValue, setCompanyValue] = useState(companyData.rows);
   const [idRegistration, setIdRegistration] = useState(0);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const providerValue: ContextData = {
     searchValue,
@@ -43,6 +44,8 @@ export const CompanyProvider = (props: ContextProps) => {
     setCompanyValue,
     idRegistration,
     setIdRegistration,
+    isOpenModal,
+    setIsOpenModal,
   };
 
   return <CompanyContext.Provider value={providerValue} {...props} />;
