@@ -1,18 +1,10 @@
-import { ChangeEvent, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext, IUserValue } from '../../Context/UserContext';
 import { Container } from './styles';
 
 export function UserFilter() {
   
   const { searchValue, setSearchValue, columnFilter, setColumnFilter } = useContext(UserContext);
-  
-  const handleFilterSearch = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(value);
-  };
-
-  const handleFilterColumn = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
-    setColumnFilter(value as keyof IUserValue);
-  }; 
 
   return (
     <Container>
@@ -21,14 +13,15 @@ export function UserFilter() {
           placeholder="Buscar..."
           autoFocus
           value={searchValue}
-          onChange={(e) => handleFilterSearch(e)}
+          onChange={({ target: { value } }) => setSearchValue(value)}
         />
       </div>
       <form>
         <select
           data-testid="columns-search"
           value={ columnFilter }
-          onChange={ (e) => handleFilterColumn(e) }
+          onChange={(
+            { target: { value } }) =>  setColumnFilter(value as keyof IUserValue)}
         >
           <option value="name">Nome</option>
           <option value="companies">Empresa</option>

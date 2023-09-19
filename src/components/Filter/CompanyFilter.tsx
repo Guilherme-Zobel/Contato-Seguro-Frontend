@@ -1,22 +1,10 @@
-import { ChangeEvent, useContext } from "react";
+import { useContext } from "react";
 import { Container } from "./styles";
 import { CompanyContext, ICompanyValue } from "../../Context/CompanyContext";
 
 export function CompanyFilter() {
   const { searchValue, setSearchValue, columnFilter, setColumnFilter } =
     useContext(CompanyContext);
-
-  const handleFilterSearch = ({
-    target: { value },
-  }: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(value);
-  };
-
-  const handleFilterColumn = ({
-    target: { value },
-  }: ChangeEvent<HTMLSelectElement>) => {
-    setColumnFilter(value as keyof ICompanyValue);
-  };
 
   return (
     <Container>
@@ -26,11 +14,13 @@ export function CompanyFilter() {
           autoFocus
           data-testid="columns-search"
           value={searchValue}
-          onChange={(e) => handleFilterSearch(e)}
+          onChange={({ target: { value } }) => setSearchValue(value)}
         />
       </div>
       <form>
-        <select value={columnFilter} onChange={(e) => handleFilterColumn(e)}>
+        <select value={columnFilter}
+        onChange={(
+          { target: { value } }) => setColumnFilter(value  as keyof ICompanyValue )}>
           <option value="name">Nome</option>
           <option value="phone">Telefone</option>
           <option value="cnpj">CNPJ</option>
