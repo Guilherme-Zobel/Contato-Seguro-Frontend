@@ -55,33 +55,100 @@ export const Cointainer = styled.form`
   }
 `;
 
-export const StyledSideBySideInputs = styled.div`
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  display: grid;
-  button {
-    transition: border-color 0.2s;
-    margin-top: 2rem;
-    justify-content: center;
-    height: 4rem;
-    display: flex;
-    color: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: 0.25rem;
-    background: var(--gray-850);
-    align-items: center;
-    &:hover {
-      border-color: ${darken(0.1, '#323238')};
+  export const StyledSideBySideInputs = styled.div`
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    display: grid;
+    button {
+      transition: border-color 0.2s;
+      margin-top: 2rem;
+      justify-content: center;
+      height: 4rem;
+      display: flex;
+      color: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 0.25rem;
+      background: var(--gray-850);
+      align-items: center;
+      &:hover {
+        border-color: ${darken(0.1, '#323238')};
+      }
+      span {
+        margin-left: 1rem;
+        font-size: 1rem;
+        display: inline-block;
+        color: var(--text-title);
+      }
     }
-    img {
-      width: 20px;
-      height: 20px;
+    `;
+
+    
+  export const StyledBtnCofirmDelete = styled.div`
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    display: grid;
+
+    button {
+      transition: border-color 0.2s;
+      margin-top: 2rem;
+      justify-content: center;
+      height: 4rem;
+      display: flex;
+      color: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 0.25rem;
+      background: var(--gray-850);
+      align-items: center;
+
+      span {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        display: inline-block;
+        color: var(--text-title);
+      }
+
     }
-    span {
-      margin-left: 1rem;
-      font-size: 1rem;
-      display: inline-block;
-      color: var(--text-title);
-    }
+    button:last-child {
+      background: none;
+      border-color: var(--gray-850);
+      font-weight: 600;
+      color: var(--gray-850);
   }
-  `;
+  `
+
+
+  export const StyledOkButton  = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+
+    h2 {
+      text-align: center;
+    }
+    button {
+      width: 10rem;
+      margin-top: 2rem;
+      justify-content: center;
+      height: 4rem;
+      display: flex;
+      color: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 0.25rem;
+      background: var(--gray-850);
+      align-items: center;
+
+      span {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        display: inline-block;
+        color: var(--text-title);
+      }
+    }
+  `
+    export const StyledModalDelete = styled.div `
+    text-align: center;
+    h3 > span {
+      color: red
+    }
+  `

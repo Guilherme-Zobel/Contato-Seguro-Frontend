@@ -1,30 +1,48 @@
 import moment from "moment";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Container } from "./styles";
 import { IUserValue, UserContext } from "../../Context/UserContext";
 import { CompanyContext } from "../../Context/CompanyContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { formatPhone } from "../../utils/formatPhone";
+import { ModalDelete } from "../Modal.tsx/DeleteModal";
 
 export function UserTable() {
   const {
     searchValue,
     columnFilter,
     userValue,
+    idRegistration,
     setUserValue,
     setIdRegistration,
     setIsOpenModal,
   } = useContext(UserContext);
   const { companyValue } = useContext(CompanyContext);
 
-  function handleDelete(id: number) {
-    const updatedRowsData = userValue.filter((row) => row.id !== id);
+  const [confirmNameDelete, seConfirmNameDelete] = useState('')
+  const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
+
+  function handleDelete(id: number, name:string) {
+    setIdRegistration(id);
+    setIsOpenModalDelete(true)
+    seConfirmNameDelete(name);
+  }
+
+  function handleConfirmDelete() {
+    const updatedRowsData = userValue.filter((row) => row.id !== idRegistration);
     setUserValue(updatedRowsData);
+    setIsOpenModalDelete(false);
+    setDeleteSuccess(true)
   }
 
   function handleEdit(id: number) {
     setIdRegistration(id);
     setIsOpenModal(true);
+  }
+
+  function handleCloseModal() {
+    setIsOpenModalDelete(false);
   }
 
   const filterRows = userValue.filter((row: IUserValue) => {
@@ -34,7 +52,7 @@ export function UserTable() {
       const userCompanies = companyValue.filter(({ id }) => row.companies.includes(id));
       return userCompanies.length === 0
         ? true
-        : userCompanies.find(({ name }) => name.toLowerCase().includes(searchValueLower))
+        : userCompanies.find(({ name }) => name.toLowerCase().includes(searchValueLower.toLowerCase()))
    }
 
     return row[columnFilter]
@@ -45,7 +63,7 @@ export function UserTable() {
 
   return (
     <Container>
-      <table>
+      <table data-testid="user-table">
         <thead>
           <tr>
             <th>Nome</th>
@@ -69,11 +87,11 @@ export function UserTable() {
                 </td>
                 <td>{row.email}</td>
                 <td>{formatPhone(row.phone)}</td>
-                <td>{moment(row.birthdate).format("DD/MM/YYYY")}</td>
+                <td>{row.birthdate ? moment(row.birthdate).format("DD/MM/YYYY") : ''}</td>
                 <td>{row.city}</td>
                 <td>
                   <button>
-                    <FaTrash onClick={() => handleDelete(row.id)} />
+                    <FaTrash onClick={() => handleDelete(row.id, row.name)} />
                     <FaEdit onClick={() => handleEdit(row.id)} />
                   </button>
                 </td>
@@ -81,6 +99,17 @@ export function UserTable() {
             ))}
         </tbody>
       </table>
+
+
+      
+      <ModalDelete
+        isOpenModalDelete={isOpenModalDelete}
+        confirmNameDelete={confirmNameDelete}
+        deleteSuccess={deleteSuccess}
+        setDeleteSuccess={setDeleteSuccess}
+        handleCloseModal={handleCloseModal}
+        handleConfirmDelete={handleConfirmDelete}
+      />
     </Container>
   );
 }
