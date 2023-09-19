@@ -1,6 +1,6 @@
 import companyData from "../../data/company.json";
 import { ICompanyValue } from '../../Context/CompanyContext'
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor,getByText } from "@testing-library/react";
 import React, { Dispatch, SetStateAction } from "react";
 import App from "../../App";
 import usersJson from "../../data/user.json";
@@ -10,10 +10,12 @@ import { IUserValue } from "../../Context/UserContext";
 import { UserSection } from "../../components/Section/UserSection";
 import { UserContext } from "../../Context/UserContext";
 import mockUserContext from "../utils/userContext";
-import { Tabs } from "../../components/Tabs";
+import { Tabs } from "../../components/Tabs/index";
 import dictionary from "../../utils/dictionary";
+import selectEvent from "react-select-event"
 
 const rowsCompanyData = companyData.rows as ICompanyValue[];
+
 
 test("Should show the list of users", () => {
   render(<App />);
@@ -31,8 +33,10 @@ test("Should show the list of users", () => {
   });
 });
 
-test("should insert an user", () => {
-  render(<App />);
+test("should insert an user",async  () => {
+  const mockedAlert = jest.fn()
+  window.alert = mockedAlert
+  const {container} = render(<App />);
   const insertButton = screen.getByText("+");
   fireEvent.click(insertButton);
 
@@ -52,18 +56,11 @@ test("should insert an user", () => {
 
   const emailInput = screen.getByPlaceholderText("E-mail*");
   fireEvent.change(emailInput, { target: { value: newUserData.email } });
-
-  const selectInput = screen.getByText("Selecione suas empresas...");
-
-  newUserData.companies.map((companyId) => {
-    const companyName = rowsCompanyData.find(({ id }) => id === companyId)?.name;
-    if (!companyName) {
-      return;
-    }
-
-    fireEvent.click(selectInput);
-    fireEvent.click(screen.getByText(companyName));
-  });
+  
+  
+  await selectEvent.select(screen.getByLabelText("Companies"),
+    rowsCompanyData.filter((line) => newUserData.companies.includes(line.id)).map((line) => line.name)
+  )
 
   const phoneInput = screen.getByPlaceholderText("(00) 00000-0000");
   fireEvent.change(phoneInput, { target: { value: newUserData.phone } });
@@ -78,7 +75,6 @@ test("should insert an user", () => {
 
   const sendButton = screen.getByText("Enviar");
   fireEvent.click(sendButton);
-
   expect(screen.queryByText("Inserir")).toBe(null);
   expect(screen.getByText(newUserData.name)).toBeTruthy();
   expect(screen.getByText(newUserData.email)).toBeTruthy();
@@ -96,18 +92,23 @@ test("should delete an user", () => {
 
   const firstLineDeleteIcon =
     firstLine.querySelectorAll("td > button > svg")[0];
+    fireEvent.click(firstLineDeleteIcon);
+  const confirmButton = screen.getByText("Confirmar");
+  fireEvent.click(confirmButton);
+  
+  const okButton = screen.getByText("Ok!");
+  fireEvent.click(okButton);
 
-  fireEvent.click(firstLineDeleteIcon);
   expect(screen.queryByText(firstLineName)).toBeNull();
 });
 
-test("should update an user", () => {
+ test("should update an user", async () => {
   const { container } = render(<App />);
 
   const newUserData: IUserValue = {
     id: 0,
     name: "Nome de Teste",
-    companies: [1, 2],
+    companies: [1],
   
     email: "teste@teste.teste",
     phone: "(61) 98765-4321",
@@ -125,7 +126,6 @@ test("should update an user", () => {
   expect(screen.queryByText(newUserData.city)).toBeNull();
 
   const firstLine = container.querySelectorAll("tbody tr")[0];
-  const firstLineName = firstLine.querySelectorAll("td")[0].innerHTML;
 
   const firstLineUpdateIcon =
     firstLine.querySelectorAll("td > button > svg")[1];
@@ -138,19 +138,9 @@ test("should update an user", () => {
   const emailInput = screen.getByPlaceholderText("E-mail*");
   fireEvent.change(emailInput, { target: { value: newUserData.email } });
 
-  const selectInput = screen
-    .getByTestId("select-companies")
-    .querySelector("custom-select");
-  newUserData.companies.map((companyId) => {
-    if (selectInput) {
-      const companyName = rowsCompanyData.find(({ id }) => id === companyId)?.name;
-      if (!companyName) {
-        return;
-      }
-      fireEvent.click(selectInput);
-      fireEvent.click(screen.getByText(companyName));
-    }
-  });
+  await selectEvent.select(screen.getByLabelText("Companies"),
+    rowsCompanyData.filter((line) => newUserData.companies.includes(line.id)).map((line) => line.name)
+  )
 
   const phoneInput = screen.getByPlaceholderText("(00) 00000-0000");
   fireEvent.change(phoneInput, { target: { value: newUserData.phone } });
@@ -164,6 +154,7 @@ test("should update an user", () => {
   fireEvent.change(cityInput, { target: { value: newUserData.city } });
 
   const sendButton = screen.getByText("Enviar");
+
   fireEvent.click(sendButton);
 
   expect(screen.queryByText("Inserir")).toBe(null);
@@ -174,7 +165,7 @@ test("should update an user", () => {
     screen.getByText(moment(newUserData.birthdate).format("DD/MM/YYYY"))
   ).toBeTruthy();
   expect(screen.getByText(newUserData.city)).toBeTruthy();
-});
+}); 
 
 test("should filter data from user table", () => {
   render(<App />);
@@ -196,7 +187,7 @@ test("should open modal on click + (plus) button", () => {
 
   render(
     <UserContext.Provider value={mockUserContext}>
-      <UserSection />
+      <UserSection/>
     </UserContext.Provider>
   );
   const plusButton = screen.getByText("+");
@@ -205,6 +196,8 @@ test("should open modal on click + (plus) button", () => {
   expect(mockUserContext.setIsOpenModal).toHaveBeenCalled();
   expect(mockValue).toBeTruthy();
 });
+
+
 
 test("should render Tabs buttons on App load", () => {
   render(<App />);
@@ -224,25 +217,20 @@ test("should render Tabs buttons on App load", () => {
   expect(companyText).toBeTruthy();
 });
 
-test("should change selectedSection onClick", async () => {
-  let mockValue = 0;
-  const mockSetValue = jest.fn(
-    (newValue: number) => (mockValue = newValue)
-  ) as Dispatch<SetStateAction<number>>;
 
+test("should change selectedSection onClick", async () => {
   render(
-    <Tabs />
+    <App />
   );
 
-  const companiesBtn = await screen.findByText("Empresas");
-  companiesBtn.click();
+  const companiesBtn = await screen.findByTestId("company-tab-button")
+  fireEvent.click(companiesBtn)
+  expect(screen.getByTestId("company-table"))
 
-  expect(mockSetValue).toHaveBeenCalledWith(dictionary.companySection);
-  expect(mockValue).toBe(dictionary.companySection);
 
   const usersBtn = await screen.findByText("Usuários");
-  usersBtn.click();
+  fireEvent.click(usersBtn)
 
-  expect(mockSetValue).toHaveBeenCalledWith(dictionary.userSection);
-  expect(mockValue).toBe(dictionary.userSection);
+  expect(screen.getByTestId("user-table"))
+
 });

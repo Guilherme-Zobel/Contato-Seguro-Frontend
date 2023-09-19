@@ -18,6 +18,7 @@ export function Tabs() {
         Usuários
       </TabButton>
       <TabButton
+        data-testid="company-tab-button"
         className={selectedSection === dictionary.companySection ? 'selected' : ''}
         onClick={() => setSelectedSection(dictionary.companySection)}>
         Empresas

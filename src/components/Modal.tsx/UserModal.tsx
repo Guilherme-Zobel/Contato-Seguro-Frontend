@@ -46,7 +46,9 @@ export function UserModal() {
   }, [isOpenModal]);
 
   function handleClear() {
-    setFormData(initialValue);
+    const { id: idRegistration, ...rest } = initialValue;
+    const clearValue = { id: idRegistration, ...rest };
+    setFormData(clearValue);
   }
 
   function updateOrInsertRegistration() {
@@ -65,9 +67,8 @@ export function UserModal() {
     }
   }
 
-  function handleFormSubmit(e: React.FormEvent<HTMLButtonElement>) {
+  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if (
     formData.name.trim() === "" ||
     formData.email.trim() === "" ||
@@ -91,7 +92,7 @@ export function UserModal() {
       <button type="button" onClick={handleCloseModal} className="react-modal-close">
         <img src={closeImg} alt="Fechar modal" />
       </button>
-      <Cointainer>
+      <Cointainer role="form" data-testid="user-form" onSubmit={handleFormSubmit}>
        <h2>{idRegistration != 0 ? "Alterar" : "Inserir"}</h2>
 
         <input
@@ -113,16 +114,21 @@ export function UserModal() {
           required
         />
         <div data-testid="select-companies">
+          <label
+            style={{visibility:"hidden", position:"absolute"}}
+            htmlFor="companies">Companies</label>
           <Select
             isMulti
+            inputId="companies"
+            name="companies"
             options={companyOptions}
             value={formData.companies.map((companyId) => ({
               value: companyId,
               label: companyValue.find(({ id }) => id === companyId)?.name || '',
             }))}
-            data-testid="select-companies"
             placeholder="Selecione suas empresas..."
             onChange={(newValue) => {
+              console.log("mudaram dados do input para =>",newValue)
               setFormData((prevState) => ({
                 ...prevState,
                 companies: newValue.map((v) => v.value),
@@ -175,7 +181,7 @@ export function UserModal() {
             <span>Limpar</span>
           </button>
 
-          <button type="submit" onClick={(e) => handleFormSubmit(e)}>
+          <button type="submit">
             <span>Enviar</span>
           </button>
         </StyledSideBySideInputs>
